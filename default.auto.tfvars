@@ -1,8 +1,8 @@
 //rsg and vnet subnet details 
-rsg_name     = "myrsg"
-rsg_location = "eastus"
-vnet_cidr    = ["192.168.0.0/16"]
-address_prefixes  = ["192.168.1.0/24"]
+rsg_name         = "myrsg"
+rsg_location     = "eastus"
+vnet_cidr        = ["192.168.0.0/16"]
+address_prefixes = ["192.168.1.0/24"]
 //address_prefixes  = ["192.168.1.0/24", "192.168.2.0/24"]
 
 //keyvault and servic principles details

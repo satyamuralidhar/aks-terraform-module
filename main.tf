@@ -4,14 +4,14 @@ resource "azurerm_resource_group" "myrsg" {
 }
 
 module "vnet" {
-  source        = ".//vnet"
-  vnet_name     = format("%s-%s-%s", var.rsg_location, "vnet", terraform.workspace)
-  rsg_location  = azurerm_resource_group.myrsg.location
-  rsg_name      = azurerm_resource_group.myrsg.name
-  vnet_cidr = var.vnet_cidr
+  source       = ".//vnet"
+  vnet_name    = format("%s-%s-%s", var.rsg_location, "vnet", terraform.workspace)
+  rsg_location = azurerm_resource_group.myrsg.location
+  rsg_name     = azurerm_resource_group.myrsg.name
+  vnet_cidr    = var.vnet_cidr
   //count         = length(var.subnet_cidr)
-  subnet_name   = format("%s-%s-%s", "subnet", var.rsg_location, terraform.workspace)
-  address_prefixes   = var.address_prefixes
+  subnet_name      = format("%s-%s-%s", "subnet", var.rsg_location, terraform.workspace)
+  address_prefixes = var.address_prefixes
 }
 
 module "serviceprincipal" {
@@ -70,10 +70,10 @@ module "aks_cluster" {
   dns_prefix             = var.dns_prefix
   default_node_pool_name = var.default_node_pool_name
   vm_size                = var.vm_size
-  ssh_pubkey = file("./k8s_pubkey.pem")
-  vnet_subnet_id = module.vnet.first_subnet_id
-  client_id = module.serviceprincipal.service_principle_application_id
-  client_secret = module.serviceprincipal.serviceprinciple_password_value
+  ssh_pubkey             = file("./k8s_pubkey.pem")
+  vnet_subnet_id         = module.vnet.first_subnet_id
+  client_id              = module.serviceprincipal.service_principle_application_id
+  client_secret          = module.serviceprincipal.serviceprinciple_password_value
   depends_on = [
     module.vnet,
     module.serviceprincipal,

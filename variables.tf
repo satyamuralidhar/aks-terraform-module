@@ -22,7 +22,7 @@ variable "dns_prefix" {}
 variable "vm_size" {}
 
 variable "address_prefixes" {
-  
+
 }
 
 //variable "subnet_id_foraks" {}
